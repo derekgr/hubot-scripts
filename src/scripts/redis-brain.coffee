@@ -21,6 +21,8 @@ module.exports = (robot) ->
   info   = Url.parse process.env.REDISTOGO_URL || 'redis://localhost:6379'
   client = Redis.createClient(info.port, info.hostname)
 
+  robot.brain.redis = client
+
   if info.auth
     client.auth info.auth.split(":")[1]
 
